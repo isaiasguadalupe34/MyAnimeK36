@@ -1,11 +1,11 @@
-# Anime Photos Gallery - App de Galería de Fotos de Anime
+markdown# Anime Photos Gallery - App de Galería de Fotos de Anime
 
 ## 1. Identificación del Proyecto
 
 - **Nombre de la App:** Anime Photos Gallery
 - **Asignatura/Profesor:** Desarrollo de Aplicaciones Móviles / M.C. Leonel González Vidales
 - **Periodo/Fecha:** Octubre 2025
-- **URL del Repositorio:** https://github.com/l3onet/movies-explorer-app
+- **URL del Repositorio:** https://github.com/isaiasguadalupe34/KodigoAnime
 
 ## 2. Descripción del Proyecto
 
@@ -30,6 +30,7 @@ Anime Photos Gallery es una aplicación móvil desarrollada con React Native y E
 
 ## 3. Tecnologías y Versiones Utilizadas
 
+### Stack Tecnológico:
 - **React Native:** 0.81.4
 - **React:** 19.1.0
 - **Expo:** ~54.0.12
@@ -43,6 +44,7 @@ Anime Photos Gallery es una aplicación móvil desarrollada con React Native y E
 - **Node.js:** v18.17.0 o superior
 ```bash
   node --version
+
   NPM: 9.0.0+ o Yarn v1.22.19+
 
   bash  npm --version
@@ -106,7 +108,24 @@ npm install
 ```
 
 ### Dependencias del Proyecto:
-DependenciaVersiónPropósito@react-navigation/native^7.1.17Core de navegación entre pantallas@react-navigation/native-stack^7.3.26Stack navigator nativo optimizadoreact-native-screens~4.16.0Optimización de rendimiento para navegaciónreact-native-safe-area-context~5.6.0Manejo de áreas seguras (notch, barras)expo-image-pickerCompatibleAcceso a galería y cámara del dispositivoexpo-status-bar~3.0.8Control de apariencia de barra de estadoexpo~54.0.12Framework de desarrollo móvilreact19.1.0Biblioteca de interfaz de usuarioreact-native0.81.4Framework multiplataformareact-native-gesture-handler~2.28.0Manejo de gestos táctilesreact-native-reanimated~4.1.1Animaciones de alto rendimiento
+
+| Dependencia | Versión | Propósito |
+|-------------|---------|-----------|
+| `@react-navigation/native` | ^7.1.17 | Core de navegación entre pantallas, manejo de estado de navegación |
+| `@react-navigation/native-stack` | ^7.3.26 | Stack navigator para navegación jerárquica (Lista → Detalles) |
+| `react-native-screens` | ~4.16.0 | Optimización de rendimiento para transiciones nativas |
+| `react-native-safe-area-context` | ~5.6.0 | Manejo de áreas seguras (notch, barras de estado) |
+| `expo-status-bar` | ~3.0.8 | Control de apariencia de barra de estado |
+| `expo` | ~54.0.3 | Framework de desarrollo móvil |
+| `react` | 19.1.0 | Biblioteca de interfaz de usuario |
+| `react-native` | 0.81.4 | Framework de desarrollo móvil multiplataforma |
+
+# Clonar el repositorio
+git clone https://github.com/isaiasguadalupe34/KodigoAnime
+cd anime-photos-app
+
+# Instalar dependencias
+npm install
 ### Verificar instalación:
 ```bash
 npm list --depth=0
@@ -163,13 +182,10 @@ npx expo start --web
 
 ### Pantalla Principal (GalleryScreen):
 - **Bienvenida**: Muestra una colección de películas en formato de tarjetas
-- **Navegación Rápida**: Tres botones principales:
-🖼️ Ver Galería
-📤 Subir Foto
-❤️ Mis Favoritos
+- **Navegación Rápida**: Tres botones principales: Ver Galería,Subir Foto yMis Favoritos
 - **Diseño**: Tema oscuro con botones coloridos y responsivos
 
-![Pantalla1](screenshots/pantalla1.jpg)
+![Pantalla1](src/screenshots/imagen1.jpeg)
 
 ### Pantalla de Detalles (DetailScreen):
 - **Imagen Principal**: Portada oficial del anime
@@ -185,13 +201,13 @@ Estudio de animación
   -  "Alterna entre agregar/eliminar con alerta de confirmación"
 - **Navegación**: Botón para regresar a la galería
 
-![Pantalla2](screenshots/pantalla2.jpg)
+![Pantalla2](src/screenshots/imagen2.jpeg)
 
 ### Datos de Ejemplo Incluidos:
-- Avatar: The Way of Water (2022)
-- Top Gun: Maverick (2022)
-- Black Panther: Wakanda Forever (2022)
-- Jurassic World Dominion (2022)
+- Shingeki no kyojin The Way of Water (2022)
+- DEAT NOTE: (2022)
+- ONE PUCH MAN (2022)
+- NARUTO (2022)
 
 ### Características Técnicas:
 - **Navegación Stack**: Transiciones suaves entre pantallas
@@ -204,7 +220,6 @@ Estudio de animación
 ### Próximas Funcionalidades Sugeridas:
 - **Integración con API**: Conectar con TMDB o similar para datos reales
 - **Sistema de Favoritos**: Persistencia local con AsyncStorage
-- **Búsqueda**: Filtrado y búsqueda de películas
 - **Categorías**: Organización por géneros
 - **Notificaciones**: Alertas de nuevas fotos
 
