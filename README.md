@@ -108,7 +108,7 @@ npm install
 ```
 
 ### Dependencias del Proyecto:
-
+```
 | Dependencia | Versión | Propósito |
 |-------------|---------|-----------|
 | `@react-navigation/native` | ^7.1.17 | Core de navegación entre pantallas, manejo de estado de navegación |
