@@ -1,191 +1,121 @@
-import React, { useState } from 'react';
-import { View, FlatList, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
-import { useFavorites } from '../context/FavoritesContext';
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  StyleSheet,
+  Text
+} from 'react-native';
+import AnimeAPI from '../services/animeApi';
 
-export default function GalleryScreen({ navigation }) {
-  const { uploadedPhotos } = useFavorites(); // OBTENER FOTOS SUBIDAS
+const GalleryScreen = ({ navigation }) => {
+  const [animes, setAnimes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const [photos] = useState([
-    { 
-      id: '1', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-C6FPmWm59CyP.jpg',
-      title: 'Attack on Titan',
-      description: 'Hace varios siglos, la humanidad fue casi exterminada por los titanes.',
-      serie: 'Shingeki no Kyojin',
-      genero: 'Acción, Drama, Fantasía',
-      año: '2013',
-      episodios: '25',
-      estudio: 'Wit Studio'
-    },
-    // ... resto de tus fotos predeterminadas
-    { 
-      id: '2', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-RoPwgrZ32gM3.jpg',
-      title: 'My Hero Academia',
-      description: 'La historia está ambientada en un mundo donde el 80% de la población tiene algún tipo de superpoder llamado "Quirk".',
-      serie: 'Boku no Hero Academia',
-      genero: 'Acción, Comedia, Superhéroes',
-      año: '2016',
-      episodios: '13',
-      estudio: 'Bones'
-    },
-    { 
-      id: '3', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-bbBWj4pEFseh.jpg',
-      title: 'Jujutsu Kaisen',
-      description: 'Yuji Itadori es un estudiante de secundaria con habilidades físicas excepcionales.',
-      serie: 'Jujutsu Kaisen',
-      genero: 'Acción, Sobrenatural, Shonen',
-      año: '2020',
-      episodios: '24',
-      estudio: 'MAPPA'
-    },
-    { 
-      id: '4', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-gHSraOSa0nBG.jpg',
-      title: 'Frieren: Beyond Journey\'s End',
-      description: 'Después de una aventura de 10 años, la elfa maga Frieren y sus compañeros derrotaron al Rey Demonio.',
-      serie: 'Sousou no Frieren',
-      genero: 'Aventura, Drama, Fantasía',
-      año: '2023',
-      episodios: '28',
-      estudio: 'Madhouse'
-    },
-    { 
-      id: '5', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg',
-      title: 'Kimetsu no Yaiba',
-      description: 'Tanjiro Kamado vive en las montañas con su familia.',
-      serie: 'Demon Slayer',
-      genero: 'Acción, Sobrenatural',
-      año: '2019',
-      episodios: '26',
-      estudio: 'ufotable'
-    },
-    { 
-      id: '6', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1535-4r88a1tsBEIz.jpg',
-      title: 'Death Note',
-      description: 'Light Yagami es un estudiante brillante que encuentra un cuaderno sobrenatural.',
-      serie: 'Death Note',
-      genero: 'Thriller, Misterio, Sobrenatural',
-      año: '2006',
-      episodios: '37',
-      estudio: 'Madhouse'
-    },
-    { 
-      id: '7', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21459-RoPwgrZ32gM3.jpg',
-      title: 'My Hero Academia Season 2',
-      description: 'Continuando su camino para convertirse en el héroe número uno.',
-      serie: 'Boku no Hero Academia Season 2',
-      genero: 'Acción, Comedia, Superhéroes',
-      año: '2017',
-      episodios: '25',
-      estudio: 'Bones'
-    },
-    { 
-      id: '8', 
-      uri: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-FlochcFsyoF4.png',
-      title: 'Chainsaw Man',
-      description: 'Denji es un adolescente que vive en la pobreza extrema.',
-      serie: 'Chainsaw Man',
-      genero: 'Acción, Sobrenatural, Gore',
-      año: '2022',
-      episodios: '12',
-      estudio: 'MAPPA'
-    },
-  ]);
+  useEffect(() => {
+    cargarAnimes();
+  }, []);
 
-  // COMBINAR FOTOS SUBIDAS CON FOTOS PREDETERMINADAS
-  const allPhotos = [...uploadedPhotos, ...photos];
-
-  console.log('Total de fotos en galería:', allPhotos.length);
-  console.log('Fotos subidas:', uploadedPhotos.length);
+  const cargarAnimes = async () => {
+    setLoading(true);
+    const datos = await AnimeAPI.getPopularAnimes();
+    setAnimes(datos);
+    setLoading(false);
+  };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity 
-      style={styles.imageContainer}
-      onPress={() => navigation.navigate('Detail', { photo: item })}
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('DetailScreen', { anime: item })}
     >
-      <Image 
-        source={{ uri: item.uri }} 
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <View style={styles.overlay}>
-        <Text style={styles.imageTitle}>{item.title}</Text>
-        <Text style={styles.imageYear}>{item.año}</Text>
+      <Image source={{ uri: item.image_url }} style={styles.image} />
+      <View style={styles.cardContent}>
+        <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
+        <Text style={styles.rating}>⭐ {item.rating}</Text>
       </View>
     </TouchableOpacity>
   );
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#007AFF" />
+        <Text style={styles.loadingText}>Cargando...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      {uploadedPhotos.length > 0 && (
-        <View style={styles.header}>
-          <Text style={styles.headerText}>📤 {uploadedPhotos.length} foto(s) subida(s)</Text>
-        </View>
-      )}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Galería</Text>
+      </View>
+      
       <FlatList
-        data={allPhotos}
+        data={animes}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id.toString()}
         numColumns={2}
         contentContainerStyle={styles.list}
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a2e',
+    backgroundColor: '#fff'
   },
   header: {
-    padding: 12,
-    backgroundColor: '#FF6B35',
-    borderBottomWidth: 2,
-    borderBottomColor: '#E91E63',
+    backgroundColor: '#007AFF',
+    padding: 16,
+    paddingTop: 50
   },
-  headerText: {
-    color: '#fff',
-    fontSize: 16,
+  headerTitle: {
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
+    color: '#fff'
   },
   list: {
-    padding: 10,
+    padding: 8
   },
-  imageContainer: {
+  card: {
     flex: 1,
-    margin: 5,
+    margin: 8,
+    backgroundColor: '#f5f5f5',
     borderRadius: 10,
     overflow: 'hidden',
-    backgroundColor: '#2d2d44',
-    minHeight: 250,
+    elevation: 3
   },
   image: {
     width: '100%',
-    height: 250,
+    height: 200
   },
-  overlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    padding: 10,
+  cardContent: {
+    padding: 8
   },
-  imageTitle: {
-    color: '#fff',
+  title: {
     fontSize: 14,
     fontWeight: 'bold',
+    marginBottom: 4
   },
-  imageYear: {
-    color: '#bbb',
-    fontSize: 11,
-    marginTop: 2,
+  rating: {
+    fontSize: 12,
+    color: '#666'
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: '#666'
+  }
 });
+
+export default GalleryScreen;
