@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  SafeAreaView
+  StatusBar
 } from 'react-native';
 import AnimeAPI from '../services/animeApi';
 
@@ -62,18 +62,26 @@ const HomeScreen = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Anime App</Text>
-        
-        {/* Buscador simple */}
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Buscar anime..."
-          value={searchText}
-          onChangeText={buscar}
-        />
+    <View style={styles.container}>
+      <StatusBar 
+        barStyle="light-content" 
+        backgroundColor="#007AFF"
+      />
+      
+      {/* Header - SIN cortes */}
+      <View style={styles.headerWrapper}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Anime App</Text>
+          
+          {/* Buscador */}
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Buscar anime..."
+            value={searchText}
+            onChangeText={buscar}
+            placeholderTextColor="#999"
+          />
+        </View>
       </View>
 
       {/* Loading */}
@@ -95,34 +103,45 @@ const HomeScreen = ({ navigation }) => {
           showsVerticalScrollIndicator={false}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#f5f5f5'
+  },
+  headerWrapper: {
+    backgroundColor: '#007AFF',
+    paddingTop: (StatusBar.currentHeight || 0) + 4
   },
   header: {
     backgroundColor: '#007AFF',
     paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 16
+    paddingTop: 4,
+    paddingBottom: 8
   },
   headerTitle: {
-    fontSize: 28,
+    fontSize: 24,
     color: '#fff',
     fontWeight: 'bold',
-    marginBottom: 12
+    fontStyle: 'italic',
+    marginBottom: 8,
+    letterSpacing: 0.5
   },
   searchInput: {
     backgroundColor: '#fff',
     borderRadius: 10,
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
-    color: '#000'
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#000',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2
   },
   listContent: {
     padding: 8
@@ -130,23 +149,23 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 8,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 10,
+    backgroundColor: '#fff',
+    borderRadius: 12,
     overflow: 'hidden',
-    elevation: 3,
+    elevation: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.15,
     shadowRadius: 4,
     maxWidth: '47%'
   },
   imagen: {
     width: '100%',
-    height: 200,
+    height: 220,
     backgroundColor: '#ddd'
   },
   cardContent: {
-    padding: 8
+    padding: 10
   },
   titulo: {
     fontSize: 14,
@@ -155,8 +174,9 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   rating: {
-    fontSize: 12,
-    color: '#666'
+    fontSize: 13,
+    color: '#666',
+    fontWeight: '600'
   },
   loadingContainer: {
     flex: 1,

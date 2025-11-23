@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 import AnimeAPI from '../services/animeApi';
 
@@ -40,17 +41,24 @@ const GalleryScreen = ({ navigation }) => {
 
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#007AFF" />
-        <Text style={styles.loadingText}>Cargando...</Text>
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#007AFF" />
+          <Text style={styles.loadingText}>Cargando...</Text>
+        </View>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Galería</Text>
+      <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
+      
+      <View style={styles.headerWrapper}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Galería</Text>
+        </View>
       </View>
       
       <FlatList
@@ -67,17 +75,24 @@ const GalleryScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#f5f5f5'
+  },
+  headerWrapper: {
+    backgroundColor: '#007AFF',
+    paddingTop: (StatusBar.currentHeight || 0) + 4
   },
   header: {
     backgroundColor: '#007AFF',
-    padding: 16,
-    paddingTop: 50
+    paddingHorizontal: 16,
+    paddingTop: 4,
+    paddingBottom: 8
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#fff'
+    fontStyle: 'italic',
+    color: '#fff',
+    letterSpacing: 0.5
   },
   list: {
     padding: 8
@@ -85,17 +100,17 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 8,
-    backgroundColor: '#f5f5f5',
-    borderRadius: 10,
+    backgroundColor: '#fff',
+    borderRadius: 12,
     overflow: 'hidden',
-    elevation: 3
+    elevation: 4
   },
   image: {
     width: '100%',
-    height: 200
+    height: 220
   },
   cardContent: {
-    padding: 8
+    padding: 10
   },
   title: {
     fontSize: 14,
@@ -103,8 +118,9 @@ const styles = StyleSheet.create({
     marginBottom: 4
   },
   rating: {
-    fontSize: 12,
-    color: '#666'
+    fontSize: 13,
+    color: '#666',
+    fontWeight: '600'
   },
   loadingContainer: {
     flex: 1,

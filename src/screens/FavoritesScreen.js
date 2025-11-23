@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   View,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFavorites } from '../context/FavoritesContext';
@@ -24,7 +25,7 @@ const FavoritesScreen = ({ navigation }) => {
         style={styles.heart}
         onPress={() => toggleFavorite(item)}
       >
-        <Ionicons name="heart" size={20} color="#FF0000" />
+        <Ionicons name="heart" size={22} color="#FF0000" />
       </TouchableOpacity>
 
       <View style={styles.cardContent}>
@@ -41,10 +42,14 @@ const FavoritesScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>
-          Mis Favoritos ({favorites.length})
-        </Text>
+      <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
+      
+      <View style={styles.headerWrapper}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>
+            Mis Favoritos ({favorites.length})
+          </Text>
+        </View>
       </View>
 
       {favorites.length === 0 ? (
@@ -71,17 +76,24 @@ const FavoritesScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#f5f5f5'
+  },
+  headerWrapper: {
+    backgroundColor: '#007AFF',
+    paddingTop: (StatusBar.currentHeight || 0) + 4
   },
   header: {
     backgroundColor: '#007AFF',
-    padding: 16,
-    paddingTop: 50
+    paddingHorizontal: 16,
+    paddingTop: 4,
+    paddingBottom: 8
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff'
+    fontStyle: 'italic',
+    color: '#fff',
+    letterSpacing: 0.3
   },
   list: {
     padding: 8
@@ -89,10 +101,10 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 8,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
     borderRadius: 12,
     overflow: 'hidden',
-    elevation: 3
+    elevation: 4
   },
   image: {
     width: '100%',
@@ -102,12 +114,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     right: 8,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     borderRadius: 20,
     padding: 8
   },
   cardContent: {
-    padding: 8
+    padding: 10
   },
   title: {
     fontSize: 14,
@@ -119,8 +131,9 @@ const styles = StyleSheet.create({
     gap: 8
   },
   info: {
-    fontSize: 12,
-    color: '#666'
+    fontSize: 13,
+    color: '#666',
+    fontWeight: '600'
   },
   emptyContainer: {
     flex: 1,
@@ -131,7 +144,8 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 18,
     color: '#666',
-    marginTop: 16
+    marginTop: 16,
+    fontWeight: 'bold'
   },
   emptySubtitle: {
     fontSize: 14,
