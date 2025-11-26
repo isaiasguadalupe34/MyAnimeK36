@@ -65,24 +65,24 @@ Anime Photos Gallery es una aplicación móvil desarrollada con React Native y E
 ### Organización de Archivos:
 ```
 anime-photos-app/
-├── App.js                          # Componente principal con providers
-├── app.json                        # Configuración de Expo
-├── package.json                    # Dependencias y scripts
-├── babel.config.js                 # Configuración de Babel
-├── tsconfig.json                   # Configuración de TypeScript
+├── App.js                          
+├── app.json                        
+├── package.json                   
+├── babel.config.js                 
+├── tsconfig.json                  
 └── src/
-    ├── context/                    # Contextos globales
-    │   └── FavoritesContext.js    # Gestión de favoritos y fotos subidas
-    ├── navigation/                 # Configuración de navegación
-    │   ├── AppNavigator.js        # Stack Navigator principal
-    │   └── index.js               # Exportaciones
-    └── screens/                    # Pantallas de la aplicación
-        ├── HomeScreen.js          # Pantalla de bienvenida
-        ├── GalleryScreen.js       # Galería de animes
-        ├── DetailScreen.js        # Detalles del anime
-        ├── FavoritesScreen.js     # Lista de favoritos
-        ├── UploadScreen.js        # Subir nuevas fotos
-        └── index.js               # Exportaciones
+    ├── context/                    
+    │   └── FavoritesContext.js    
+    ├── navigation/                 
+    │   ├── AppNavigator.js        
+    │   └── index.js             
+    └── screens/                   
+        ├── HomeScreen.js          
+        ├── GalleryScreen.js       
+        ├── DetailScreen.js       
+        ├── FavoritesScreen.js     
+        ├── UploadScreen.js        
+        └── index.js              
 ```
 
 ### Arquitectura de la Aplicación:
