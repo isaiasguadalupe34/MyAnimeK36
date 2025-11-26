@@ -273,16 +273,16 @@ rm -rf node_modules package-lock.json && npm install
 
 ## 11. Crear el APK
 
-# 1. Instalar EAS
+### 1. Instalar EAS
 npm install -g eas-cli
 
-# 2. Login en Expo
+### 2. Login en Expo
 eas login
 
-# 3. Configurar proyecto
+### 3. Configurar proyecto
 eas build:configure
 
-# 4. Construir APK
+### 4. Construir APK
 eas build --platform android --profile preview
 
 ## 12. INSTALACION DE APK 
@@ -296,8 +296,8 @@ eas build --platform android --profile preview
 
 ### Pantalla Instalada:
 ![DESCARGAR](src/screenshots/Terminada.jpeg)
-![DESCARGAR](src/screenshots/Terminada 2.jpeg)
-![DESCARGAR](src/screenshots/Terminada 3.jpeg)
+![DESCARGAR](src/screenshots/Terminada2.jpeg)
+![DESCARGAR](src/screenshots/Terminada3.jpeg)
 
 ---
 
