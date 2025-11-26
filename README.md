@@ -108,7 +108,7 @@ npm install
 ```
 
 ### Dependencias del Proyecto:
-```
+
 | Dependencia | Versión | Propósito |
 |-------------|---------|-----------|
 | `@react-navigation/native` | ^7.1.17 | Core de navegación entre pantallas, manejo de estado de navegación |
@@ -271,8 +271,36 @@ rm -rf node_modules package-lock.json && npm install
 - [React Native Docs](https://reactnative.dev/)
 - [Expo Components](https://docs.expo.dev/versions/latest/)
 
+## 11. Crear el APK
+
+# 1. Instalar EAS
+npm install -g eas-cli
+
+# 2. Login en Expo
+eas login
+
+# 3. Configurar proyecto
+eas build:configure
+
+# 4. Construir APK
+eas build --platform android --profile preview
+
+## 12. INSTALACION DE APK 
+
+### Pantalla de instalacion:
+- **Imagen Principal**: Portada oficial del anime
+- **Información Completa**: se logra apreciar un boton de instalacion. 
+
+![DESCARGAR](src/screenshots/Descargar.jpeg)
+![DESCARGADA](src/screenshots/Descargada.jpeg)
+
+### Pantalla Instalada:
+![DESCARGAR](src/screenshots/Terminada.jpeg)
+![DESCARGAR](src/screenshots/Terminada 2.jpeg)
+![DESCARGAR](src/screenshots/Terminada 3.jpeg)
+
 ---
 
 **Desarrollado por:** Isaias Jimenez Guadalupe 
-**Última actualización:** 4 de octubre 2025  
+**Última actualización:** 26 de noviembre 2025  
 **Versión:** 1.1.0
