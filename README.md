@@ -294,7 +294,7 @@ eas build --platform android --profile preview
 ![DESCARGAR](src/screenshots/Descargar.jpeg)
 ![DESCARGADA](src/screenshots/Descargada.jpeg)
 
-### Pantalla Instalada:
+## Pantalla Instalada:
 ![DESCARGAR](src/screenshots/Terminada.jpeg)
 ![DESCARGAR](src/screenshots/Terminada2.jpeg)
 ![DESCARGAR](src/screenshots/Terminada3.jpeg)
