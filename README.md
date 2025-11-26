@@ -64,7 +64,8 @@ Anime Photos Gallery es una aplicación móvil desarrollada con React Native y E
 
 ### Organización de Archivos:
 ```
-anime-photos-app
+anime-photos-app/
+
 ├── App.js                          
 ├── app.json                        
 ├── package.json                   
