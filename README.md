@@ -296,7 +296,7 @@ Este es el link: https://expo.dev/accounts/isaiasjg/projects/anime-photos-app/bu
 ![DESCARGADA](src/screenshots/Descargada.jpeg)
 
 ## Pantalla Instalada:
-![DESCARGAR](src/screenshots/Terminada.jpeg)
+![DESCARGAR](src/screenshots/USO.jpeg)
 ![DESCARGAR](src/screenshots/Terminada31.jpeg)
 ![DESCARGAR](src/screenshots/Terminada21.jpeg)
 
