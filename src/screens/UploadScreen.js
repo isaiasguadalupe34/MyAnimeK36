@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const UploadScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
+      
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Subir Anime</Text>
       </View>
@@ -14,30 +17,33 @@ const UploadScreen = () => {
           Esta función estará disponible pronto
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#007AFF'
   },
   header: {
     backgroundColor: '#007AFF',
-    padding: 16,
-    paddingTop: 50
+    paddingHorizontal: 16,
+    paddingTop: 4,
+    paddingBottom: 12
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
+    fontStyle: 'italic',
     color: '#fff'
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20
+    padding: 20,
+    backgroundColor: '#f5f5f5'
   },
   title: {
     fontSize: 24,
@@ -47,7 +53,8 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: '#666',
-    marginTop: 8
+    marginTop: 8,
+    textAlign: 'center'
   }
 });
 

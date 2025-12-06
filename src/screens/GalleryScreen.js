@@ -7,9 +7,26 @@ import {
   ActivityIndicator,
   StyleSheet,
   Text,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AnimeAPI from '../services/animeApi';
+
+const { width } = Dimensions.get('window');
+
+const getNumColumns = () => {
+  if (width >= 768) return 4;
+  if (width >= 600) return 3;
+  return 2;
+};
+
+const NUM_COLUMNS = getNumColumns();
+const CARD_PADDING = 16;
+const CARD_MARGIN = 8;
+const TOTAL_PADDING = CARD_PADDING * 2;
+const TOTAL_MARGIN = CARD_MARGIN * 2 * NUM_COLUMNS;
+const CARD_WIDTH = Math.floor((width - TOTAL_PADDING - TOTAL_MARGIN) / NUM_COLUMNS);
 
 const GalleryScreen = ({ navigation }) => {
   const [animes, setAnimes] = useState([]);
@@ -41,51 +58,47 @@ const GalleryScreen = ({ navigation }) => {
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
         <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#007AFF" />
           <Text style={styles.loadingText}>Cargando...</Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
       
-      <View style={styles.headerWrapper}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Galería</Text>
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Galería</Text>
       </View>
       
       <FlatList
         data={animes}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
+        numColumns={NUM_COLUMNS}
+        key={NUM_COLUMNS}
         contentContainerStyle={styles.list}
+        style={styles.flatList}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5'
-  },
-  headerWrapper: {
-    backgroundColor: '#007AFF',
-    paddingTop: (StatusBar.currentHeight || 0) + 4
+    backgroundColor: '#007AFF'
   },
   header: {
     backgroundColor: '#007AFF',
     paddingHorizontal: 16,
     paddingTop: 4,
-    paddingBottom: 8
+    paddingBottom: 12
   },
   headerTitle: {
     fontSize: 22,
@@ -94,12 +107,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     letterSpacing: 0.5
   },
+  flatList: {
+    backgroundColor: '#f5f5f5'
+  },
   list: {
-    padding: 8
+    padding: CARD_PADDING / 2,
+    paddingBottom: 20
   },
   card: {
-    flex: 1,
-    margin: 8,
+    width: CARD_WIDTH,
+    margin: CARD_MARGIN,
     backgroundColor: '#fff',
     borderRadius: 12,
     overflow: 'hidden',
@@ -107,7 +124,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 220
+    height: CARD_WIDTH * 1.4
   },
   cardContent: {
     padding: 10
@@ -125,7 +142,8 @@ const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5'
   },
   loadingText: {
     marginTop: 10,

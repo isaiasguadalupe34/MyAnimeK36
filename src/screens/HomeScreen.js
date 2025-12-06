@@ -8,9 +8,26 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AnimeAPI from '../services/animeApi';
+
+const { width } = Dimensions.get('window');
+
+const getNumColumns = () => {
+  if (width >= 768) return 4;
+  if (width >= 600) return 3;
+  return 2;
+};
+
+const NUM_COLUMNS = getNumColumns();
+const CARD_PADDING = 16;
+const CARD_MARGIN = 8;
+const TOTAL_PADDING = CARD_PADDING * 2;
+const TOTAL_MARGIN = CARD_MARGIN * 2 * NUM_COLUMNS;
+const CARD_WIDTH = Math.floor((width - TOTAL_PADDING - TOTAL_MARGIN) / NUM_COLUMNS);
 
 const HomeScreen = ({ navigation }) => {
   const [animes, setAnimes] = useState([]);
@@ -62,29 +79,20 @@ const HomeScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={styles.container}>
-      <StatusBar 
-        barStyle="light-content" 
-        backgroundColor="#007AFF"
-      />
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
       
-      {/* Header - SIN cortes */}
-      <View style={styles.headerWrapper}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Anime App</Text>
-          
-          {/* Buscador */}
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Buscar anime..."
-            value={searchText}
-            onChangeText={buscar}
-            placeholderTextColor="#999"
-          />
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Anime App</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Buscar anime..."
+          value={searchText}
+          onChangeText={buscar}
+          placeholderTextColor="#999"
+        />
       </View>
 
-      {/* Loading */}
       {loading && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#007AFF" />
@@ -92,35 +100,31 @@ const HomeScreen = ({ navigation }) => {
         </View>
       )}
 
-      {/* Lista de animes */}
       {!loading && (
         <FlatList
           data={animes}
           renderItem={({ item }) => <AnimeCard item={item} />}
           keyExtractor={(item) => String(item.id)}
-          numColumns={2}
+          numColumns={NUM_COLUMNS}
+          key={NUM_COLUMNS}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5'
-  },
-  headerWrapper: {
-    backgroundColor: '#007AFF',
-    paddingTop: (StatusBar.currentHeight || 0) + 4
+    backgroundColor: '#007AFF'
   },
   header: {
     backgroundColor: '#007AFF',
     paddingHorizontal: 16,
     paddingTop: 4,
-    paddingBottom: 8
+    paddingBottom: 12
   },
   headerTitle: {
     fontSize: 24,
@@ -136,19 +140,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     fontSize: 15,
-    color: '#000',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2
+    color: '#000'
   },
   listContent: {
-    padding: 8
+    padding: CARD_PADDING / 2,
+    paddingBottom: 20,
+    backgroundColor: '#f5f5f5'
   },
   card: {
-    flex: 1,
-    margin: 8,
+    width: CARD_WIDTH,
+    margin: CARD_MARGIN,
     backgroundColor: '#fff',
     borderRadius: 12,
     overflow: 'hidden',
@@ -156,12 +157,11 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
-    shadowRadius: 4,
-    maxWidth: '47%'
+    shadowRadius: 4
   },
   imagen: {
     width: '100%',
-    height: 220,
+    height: CARD_WIDTH * 1.4,
     backgroundColor: '#ddd'
   },
   cardContent: {
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: '#f5f5f5'
   },
   loadingText: {
     marginTop: 10,
