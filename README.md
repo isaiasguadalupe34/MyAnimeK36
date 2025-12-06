@@ -287,7 +287,7 @@ eas build:configure
 eas build --platform android --profile preview
 
 ## 12. INSTALACION DE APK 
-Este es el link: https://expo.dev/accounts/isaiasjg/projects/anime-photos-app/builds/e10778d0-6929-4881-9266-873980aeb44c
+Este es el link: https://expo.dev/accounts/isaiasjg/projects/anime-photos-app/builds/6fca5fd2-0808-47fa-84a8-d72a47b14038
 
 ### Pantalla de instalacion:
 - **Imagen Principal**: Portada oficial del anime
