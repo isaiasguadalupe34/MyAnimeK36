@@ -186,7 +186,7 @@ npx expo start --web
 - **Navegación Rápida**: Tres botones principales: Ver Galería,Subir Foto yMis Favoritos
 - **Diseño**: Tema oscuro con botones coloridos y responsivos
 
-![Pantalla1](src/screenshots/imagen1.jpeg)
+<img src="src/screenshots/imagen1.jpeg" width="180">
 
 ### Pantalla de Detalles (DetailScreen):
 - **Imagen Principal**: Portada oficial del anime
@@ -202,7 +202,7 @@ Estudio de animación
   -  "Alterna entre agregar/eliminar con alerta de confirmación"
 - **Navegación**: Botón para regresar a la galería
 
-![Pantalla2](src/screenshots/imagen2.jpeg)
+<img src="src/screenshots/imagen2.jpeg" width="180">
 
 ### Datos de Ejemplo Incluidos:
 - Shingeki no kyojin The Way of Water (2022)
