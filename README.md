@@ -290,19 +290,18 @@ eas build --platform android --profile preview
 Este es el link: https://expo.dev/accounts/isaiasjg/projects/anime-photos-app/builds/6fca5fd2-0808-47fa-84a8-d72a47b14038
 
 ### Pantalla de instalacion:
-- **Imagen Principal**: Portada oficial del anime
-- **Información Completa**: se logra apreciar un boton de instalacion. 
+- **Imagen Principal**: Portada oficial del anime  
+- **Información Completa**: Se logra apreciar un botón de instalación.
 
-![DESCARGAR](src/screenshots/Descargar.jpeg)
-![DESCARGADA](src/screenshots/Descargada.jpeg)
+<img src="src/screenshots/Descargar.jpeg" width="180">
+<img src="src/screenshots/Descargada.jpeg" width="180">
 
 ## Pantalla Instalada:
-![DESCARGAR](src/screenshots/USO.jpeg)
-![DESCARGAR](src/screenshots/Terminada31.jpeg)
-![DESCARGAR](src/screenshots/Terminada21.jpeg)
+<img src="src/screenshots/USO.jpeg" width="180">
+<img src="src/screenshots/Terminada31.jpeg" width="180">
+<img src="src/screenshots/Terminada21.jpeg" width="180">
 
 ---
 
-**Desarrollado por:** Isaias Jimenez Guadalupe 
+**Desarrollado por:** Isaias Jimenez Guadalupe  
 **Última actualización:** 26 de noviembre 2025  
-**Versión:** 1.1.0
